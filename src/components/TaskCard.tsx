@@ -1,6 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { colors } from "@/src/styles/colors";
+import { globalStyles } from "@/src/styles/globalStyles";
+
 
 export type TaskStatus = "pending" | "in-progress" | "completed";
 
@@ -94,13 +97,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onStatusChange, onSwap
                         </TouchableOpacity>
                     </>
                 ) : (
-                    <TouchableOpacity
-                        style={[styles.button, styles.buttonSecondary]}
-                        onPress={() => onStatusChange(task.id, "pending")}
-                    >
-                        <MaterialIcons name="autorenew" size={18} color="black" />
-                        <Text style={styles.buttonText}>Redo</Text>
-                    </TouchableOpacity>
+                    <Text style={styles.date}>Completed on {formatDate(task.dueDate)}</Text>
                 )}
             </View>
         </View>
@@ -109,8 +106,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onStatusChange, onSwap
 
 const styles = StyleSheet.create({
     card: {
-        // color de fonod medio transparente
-        backgroundColor: "#FFF",
+        backgroundColor: "rgba(139, 158, 162, 0.5)",
         padding: 20,
         marginVertical: 10,
         borderRadius: 12,
@@ -140,6 +136,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 18,
         fontWeight: "bold",
+        color: colors.text,
     },
     subtitle: {
         fontSize: 14,
@@ -147,7 +144,7 @@ const styles = StyleSheet.create({
     },
     description: {
         fontSize: 14,
-        color: "#444",
+        color: colors.text,
         marginVertical: 12,
     },
     userInfo: {
@@ -164,10 +161,12 @@ const styles = StyleSheet.create({
     userName: {
         fontSize: 16,
         fontWeight: "bold",
+        color: colors.text,
     },
     date: {
         fontSize: 13,
-        color: "#888",
+        color: colors.border,
+
     },
     actions: {
         flexDirection: "row",
@@ -183,18 +182,16 @@ const styles = StyleSheet.create({
         paddingHorizontal: 14,
         borderRadius: 6,
         borderWidth: 1,
-        borderColor: "#E0E0E0",
+        borderColor: colors.border,
         minWidth: 90,
         marginHorizontal: 6,
     },
     buttonPrimary: {
-        backgroundColor: "#007A5F",
-    },
-    buttonSecondary: {
-        backgroundColor: "#E0E0E0",
+        backgroundColor: colors.secondary,
     },
     buttonText: {
         fontSize: 14,
+        color: colors.text,
     },
     buttonIcon: {
         marginRight: 6,
