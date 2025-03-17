@@ -4,6 +4,7 @@ import { Tabs } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import HomeBottomSheet from '@/src/components/HomeBottomSheet';
 import { colors } from '@/src/styles/colors';
+import { globalStyles } from '@/src/styles/globalStyles';
 
 export default function TabLayout() {
   const sheetRef = useRef(null);
@@ -58,7 +59,18 @@ export default function TabLayout() {
             tabBarIcon: ({ color, focused }) => (
               <Ionicons name={focused ? 'settings-sharp' : 'settings-outline'} color={color} size={24} />
             ),
-            headerShown: false,
+            headerTintColor: '#fff',
+            headerTitle: 'Ajustes',
+            headerTitleStyle: globalStyles.header,
+            headerStyle: {
+              backgroundColor: colors.background, 
+              shadowColor: 'transparent',
+              flexDirection: 'row',
+              alignContent: 'center',
+              justifyContent: 'center',
+
+            },
+            // headerShown: false,
           }}
         />
       </Tabs>

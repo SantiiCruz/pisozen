@@ -3,6 +3,8 @@ import { useRouter } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import AnimatedHeader from "@/src/components/AnimatedHeader";
 import { useSharedValue, withTiming } from "react-native-reanimated";
+import { colors } from "@/src/styles/colors";
+import { globalStyles } from "@/src/styles/globalStyles";
 
 export default function SettingsScreen() {
     const router = useRouter();
@@ -14,8 +16,8 @@ export default function SettingsScreen() {
 
     return (
         <View style={{ flex: 1 }}>
-            <AnimatedHeader scrollY={scrollY} title="Ajustes" />
-            <View style={styles.container}>
+            {/* <AnimatedHeader scrollY={scrollY} title="Ajustes" /> */}
+            <View style={globalStyles.container}>
 
                 {/* Header con imagen y nombre */}
                 <View style={styles.header}>
@@ -65,13 +67,18 @@ export default function SettingsScreen() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, padding: 25, backgroundColor: "white" },
+    container: {
+        flex: 1,
+        padding: 25,
+        backgroundColor: colors.background,
+        paddingTop: 40
+    },
 
     // Estilo del header
     header: { flexDirection: "row", alignItems: "center", marginBottom: 20 },
     avatar: { width: 50, height: 50, borderRadius: 25, marginRight: 15 },
-    name: { fontSize: 20, fontWeight: "bold" },
-    subtitle: { fontSize: 14, color: "gray", marginTop: 2 },
+    name: { fontSize: 20, fontWeight: "bold", color: colors.text },
+    subtitle: { fontSize: 14, color: colors.text, marginTop: 2 },
 
     // Estilo de cada opción del menú
     settingItem: {
@@ -80,11 +87,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
         paddingVertical: 15,
         borderBottomWidth: 1,
-        borderBottomColor: "#ddd",
+        borderBottomColor: colors.border,
     },
 
     settingLeft: { flexDirection: "row", alignItems: "center" },
-    settingIcon: { marginRight: 10 },
-    settingLabel: { fontSize: 14, fontWeight: "500" }, // Menos grueso
-    settingDescription: { fontSize: 10, color: "gray", marginTop: 2 }, // Texto más pequeño y gris
+    settingIcon: { marginRight: 10, color: colors.text },
+    settingLabel: { fontSize: 14, fontWeight: "500", color: colors.text, }, // Menos grueso
+    settingDescription: { fontSize: 10, color: colors.border, marginTop: 2 }, // Texto más pequeño y gris
 });

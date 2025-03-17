@@ -8,7 +8,7 @@ export const initialTasks: Task[] = [
         description: "Wash dishes, clean countertops, and sweep the floor.",
         room: "Kitchen",
         status: "completed",
-        assignedTo: { id: "1", name: "Alice Johnson", photoUrl: "https://api.dicebear.com/9.x/pixel-art/svg?seed=Alice" },
+        assignedTo: { id: "1", name: "Alice Johnson", photoUrl: "https://i.pravatar.cc/100" },
         dueDate: "2025-03-10",
     },
     {
@@ -17,7 +17,7 @@ export const initialTasks: Task[] = [
         description: "Vacuum the carpet and clean the coffee table.",
         room: "Living Room",
         status: "completed",
-        assignedTo: { id: "2", name: "Bob Williams", photoUrl: "https://api.dicebear.com/9.x/pixel-art/svg?seed=Bob" },
+        assignedTo: { id: "2", name: "Bob Williams", photoUrl: "https://i.pravatar.cc/100" },
         dueDate: "2025-03-10",
     },
     // Martes
@@ -27,7 +27,7 @@ export const initialTasks: Task[] = [
         description: "Clean the toilet, shower, and sink. Mop the floor.",
         room: "Bathroom",
         status: "pending",
-        assignedTo: { id: "3", name: "Charlie Brown", photoUrl: "https://api.dicebear.com/9.x/pixel-art/svg?seed=Charlie" },
+        assignedTo: { id: "3", name: "Charlie Brown", photoUrl: "https://i.pravatar.cc/100" },
         dueDate: "2025-03-11",
     },
     {
@@ -36,7 +36,7 @@ export const initialTasks: Task[] = [
         description: "Empty all bins and take the trash to the dumpster.",
         room: "General",
         status: "pending",
-        assignedTo: { id: "4", name: "Diana Smith", photoUrl: "https://api.dicebear.com/9.x/pixel-art/svg?seed=Diana" },
+        assignedTo: { id: "4", name: "Diana Smith", photoUrl: "https://i.pravatar.cc/100" },
         dueDate: "2025-03-11",
     },
     // Miércoles
@@ -46,7 +46,7 @@ export const initialTasks: Task[] = [
         description: "Wipe down shelves, tables, and other surfaces.",
         room: "Living Room",
         status: "pending",
-        assignedTo: { id: "1", name: "Alice Johnson", photoUrl: "https://api.dicebear.com/9.x/pixel-art/svg?seed=Alice" },
+        assignedTo: { id: "1", name: "Alice Johnson", photoUrl: "https://i.pravatar.cc/100" },
         dueDate: "2025-03-12",
     },
     {

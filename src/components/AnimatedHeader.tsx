@@ -19,11 +19,12 @@ interface AnimatedHeaderProps {
 
 const AnimatedHeader: React.FC<AnimatedHeaderProps> = ({ scrollY, title, onPress }) => {
   const animatedHeaderStyle = useAnimatedStyle(() => ({
-    height: interpolate(scrollY.value, [0, 100], [80, 50], Extrapolation.CLAMP),
+    height: interpolate(scrollY.value, [0, 100], [100, 90], Extrapolation.CLAMP),
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.background,
     width: "100%",
+    paddingTop: 50,
     paddingHorizontal: interpolate(scrollY.value, [0, 100], [16, 0], Extrapolation.CLAMP),
   }));
 

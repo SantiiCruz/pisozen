@@ -25,4 +25,14 @@ export const globalStyles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
+
+  // Estilos para el header
+  header: {
+    marginTop: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    fontSize: 30,
+    fontWeight: "bold",
+  },
+  
 });
