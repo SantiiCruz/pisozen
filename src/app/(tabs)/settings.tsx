@@ -16,8 +16,8 @@ export default function SettingsScreen() {
 
     return (
         <View style={{ flex: 1 }}>
-            {/* <AnimatedHeader scrollY={scrollY} title="Ajustes" /> */}
-            <View style={globalStyles.container}>
+            <AnimatedHeader scrollY={scrollY} title="Ajustes" />
+            <View style={styles.container}>
 
                 {/* Header con imagen y nombre */}
                 <View style={styles.header}>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     // Estilo del header
     header: { flexDirection: "row", alignItems: "center", marginBottom: 20 },
     avatar: { width: 50, height: 50, borderRadius: 25, marginRight: 15 },
-    name: { fontSize: 20, fontWeight: "bold", color: colors.text },
+    name: { fontSize: 25, fontWeight: "bold", color: colors.text },
     subtitle: { fontSize: 14, color: colors.text, marginTop: 2 },
 
     // Estilo de cada opción del menú
@@ -92,6 +92,6 @@ const styles = StyleSheet.create({
 
     settingLeft: { flexDirection: "row", alignItems: "center" },
     settingIcon: { marginRight: 10, color: colors.text },
-    settingLabel: { fontSize: 14, fontWeight: "500", color: colors.text, }, // Menos grueso
-    settingDescription: { fontSize: 10, color: colors.border, marginTop: 2 }, // Texto más pequeño y gris
+    settingLabel: { fontSize: 16, fontWeight: "500", color: colors.text, }, // Menos grueso
+    settingDescription: { fontSize: 14, color: colors.border, marginTop: 2 }, // Texto más pequeño y gris
 });

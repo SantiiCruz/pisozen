@@ -28,7 +28,8 @@ export const globalStyles = StyleSheet.create({
 
   // Estilos para el header
   header: {
-    marginTop: 20,
+    height: 150,
+    marginTop: 30,
     flexDirection: "row",
     alignItems: "center",
     fontSize: 30,

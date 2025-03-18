@@ -7,14 +7,6 @@ import { colors } from '@/src/styles/colors';
 import { globalStyles } from '@/src/styles/globalStyles';
 
 export default function TabLayout() {
-  const sheetRef = useRef(null);
-  const [isSheetOpen, setIsSheetOpen] = useState(false);
-
-  const handleSheetChanges = useCallback((index: any) => {
-    sheetRef.current?.snapToIndex(index);
-    setIsSheetOpen(true);
-  }, []);
-
   return (
     <>
       <Tabs
@@ -33,11 +25,6 @@ export default function TabLayout() {
             title: 'Home',
             tabBarIcon: ({ color, focused }) => (
               <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
-            ),
-            headerTitle: () => (
-              <TouchableOpacity onPress={() => handleSheetChanges(0)}>
-                <Text style={{ fontSize: 20, color: '#fff' }}>Home</Text>
-              </TouchableOpacity>
             ),
             headerShown: false,
           }}
@@ -64,19 +51,12 @@ export default function TabLayout() {
             headerTitleStyle: globalStyles.header,
             headerStyle: {
               backgroundColor: colors.background, 
-              shadowColor: 'transparent',
-              flexDirection: 'row',
-              alignContent: 'center',
-              justifyContent: 'center',
-
+              
             },
-            // headerShown: false,
+            headerShown: false,
           }}
         />
       </Tabs>
-
-      {/* Bottom Sheet solo para Home */}
-      <HomeBottomSheet sheetRef={sheetRef} isSheetOpen={isSheetOpen} setIsSheetOpen={setIsSheetOpen} />
     </>
   );
 }

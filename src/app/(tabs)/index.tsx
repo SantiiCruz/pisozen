@@ -1,4 +1,4 @@
-import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
+import BottomSheet, { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
 import { Task, TaskCard } from "@/src/components/TaskCard";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { useState, useRef, useMemo, useCallback } from "react";
@@ -17,21 +17,39 @@ import Toast from "react-native-toast-message";
 import { initialTasks } from "@/src/data/tasks";
 import { ScrollView } from "react-native-gesture-handler";
 import HomeBottomSheet from '@/src/components/HomeBottomSheet';
+import NewTaskBottomSheet from '@/src/components/TaskBottomSheet';
 import AnimatedHeader from "@/src/components/AnimatedHeader"; // Importa el nuevo componente
 import { colors } from "@/src/styles/colors"; // Importa el archivo de colores
 import { globalStyles } from "@/src/styles/globalStyles";
 
 const CalendarPage = () => {
+    const homeSheetRef = useRef<BottomSheetModal>(null);
+    const taskSheetRef = useRef<BottomSheetModal>(null);
 
-    const sheetRef = useRef(null);
-    const [isSheetOpen, setIsSheetOpen] = useState(false);
+    const [isHomeSheetOpen, setIsHomeSheetOpen] = useState(false);
+    const [isTaskSheetOpen, setIsTaskSheetOpen] = useState(false);
+
     const scrollY = useSharedValue(0);
 
-    const handleSheetChanges = useCallback((index: any) => {
-        sheetRef.current?.snapToIndex(index);
-        setIsSheetOpen(true);
-    }, []);
+    const openHomeSheet = () => {
+        setIsHomeSheetOpen(true);
+        homeSheetRef.current?.present();
+    };
 
+    const closeHomeSheet = () => {
+        setIsHomeSheetOpen(false);
+        homeSheetRef.current?.dismiss();
+    };
+
+    const openTaskSheet = () => {
+        setIsTaskSheetOpen(true);
+        taskSheetRef.current?.present();
+    };
+
+    const closeTaskSheet = () => {
+        setIsTaskSheetOpen(false);
+        taskSheetRef.current?.dismiss();
+    };
 
     const handleScroll = (event) => {
         scrollY.value = withTiming(event.nativeEvent.contentOffset.y, { duration: 200 });
@@ -43,12 +61,7 @@ const CalendarPage = () => {
     const [tasks, setTasks] = useState<Task[]>(initialTasks);
     const [newTaskTitle, setNewTaskTitle] = useState<string>("");
 
-    // Estado para mostrar el Bottom Sheet
-    const bottomSheetRef = useRef<BottomSheet>(null);
-    const snapPoints = useMemo(() => ["25%", "50%"], []);
-
     const selectedDateTasks = tasks.filter((task) => task.dueDate === selectedDate);
-
 
     const addTask = () => {
         if (newTaskTitle.trim() === "") {
@@ -64,18 +77,18 @@ const CalendarPage = () => {
 
         setTasks([...tasks, newTask]);
         setNewTaskTitle("");
-        bottomSheetRef.current?.close();
+        closeTaskSheet();
         Toast.show({ type: "success", text1: "Éxito", text2: "Tarea agregada correctamente" });
     };
 
     return (
         <View style={{ flex: 1 }}>
-            <AnimatedHeader scrollY={scrollY} title="Home" onPress={() => handleSheetChanges(0)} />
+            <AnimatedHeader scrollY={scrollY} title="Home" onPress={openHomeSheet} />
 
             <ScrollView onScroll={handleScroll} scrollEventThrottle={16} style={globalStyles.container}>
                 <View style={styles.header}>
                     <Text style={styles.headerText}>Mis tareas</Text>
-                    <TouchableOpacity style={styles.addButton} onPress={() => bottomSheetRef.current?.expand()}>
+                    <TouchableOpacity style={styles.addButton} onPress={openTaskSheet}>
                         <Ionicons name="add-circle-outline" size={24} color="white" />
                         <Text style={styles.addButtonText}>Agregar</Text>
                     </TouchableOpacity>
@@ -92,14 +105,13 @@ const CalendarPage = () => {
                         elevation: 5,
                         borderWidth: 4,
                         borderColor: 'rgba(100, 100, 100, 0.2)'
-                      }}
-                      theme={{
+                    }}
+                    theme={{
                         calendarBackground: colors.background,
                         dayTextColor: '#fff',
                         textDisabledColor: '#444',
                         monthTextColor: '#888'
-                      }}
-                    
+                    }}
                 />
 
                 {selectedDateTasks.length > 0 ? (
@@ -114,23 +126,24 @@ const CalendarPage = () => {
                 )}
 
                 <Toast />
-
-                <BottomSheet ref={bottomSheetRef} index={-1} snapPoints={snapPoints}>
-                    <BottomSheetView style={styles.bottomSheetContainer}>
-                        <Text style={styles.sheetTitle}>Agregar nueva tarea</Text>
-                        <TextInput
-                            style={styles.input}
-                            placeholder="Título de la tarea"
-                            placeholderTextColor="#888"
-                            value={newTaskTitle}
-                            onChangeText={setNewTaskTitle}
-                        />
-                        <Button title="Guardar tarea" onPress={addTask} />
-                    </BottomSheetView>
-                </BottomSheet>
             </ScrollView>
 
-            <HomeBottomSheet sheetRef={sheetRef} isSheetOpen={isSheetOpen} setIsSheetOpen={setIsSheetOpen} />
+            {/* BottomSheet para nueva tarea */}
+            <NewTaskBottomSheet 
+                sheetRef={taskSheetRef} 
+                isSheetOpen={isTaskSheetOpen} 
+                setIsSheetOpen={setIsTaskSheetOpen} 
+                closeSheet={closeTaskSheet} 
+                addTask={addTask} 
+            />
+
+            {/* BottomSheet para Home */}
+            <HomeBottomSheet 
+                sheetRef={homeSheetRef} 
+                isSheetOpen={isHomeSheetOpen} 
+                setIsSheetOpen={setIsHomeSheetOpen} 
+                closeSheet={closeHomeSheet} 
+            />
         </View>
     );
 };

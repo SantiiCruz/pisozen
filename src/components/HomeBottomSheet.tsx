@@ -1,36 +1,28 @@
 import React, { useRef, useState } from 'react';
 import { View, Text, TouchableOpacity, Animated, TouchableWithoutFeedback, StyleSheet } from 'react-native';
-import BottomSheet, { BottomSheetView, BottomSheetProps } from '@gorhom/bottom-sheet';
+import BottomSheet, { BottomSheetView, BottomSheetProps, BottomSheetModal, useBottomSheet, useBottomSheetModal } from '@gorhom/bottom-sheet';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { colors } from "@/src/styles/colors";
 
 interface HomeBottomSheetProps {
     sheetRef: React.RefObject<BottomSheet>;
     isSheetOpen: boolean;
     setIsSheetOpen: (isOpen: boolean) => void;
+    closeSheet: () => void;
 }
 
-export default function HomeBottomSheet({ sheetRef, isSheetOpen, setIsSheetOpen }: HomeBottomSheetProps) {
-    const opacity = useRef(new Animated.Value(0)).current;
+export default function HomeBottomSheet({ sheetRef, isSheetOpen, setIsSheetOpen, closeSheet }: HomeBottomSheetProps) {
     const snapPoints = ['40%'];
-
-    const handleCloseSheet = () => {
-        sheetRef.current?.close();
-        Animated.timing(opacity, {
-            toValue: 0,
-            duration: 300,
-            useNativeDriver: true,
-        }).start(() => setIsSheetOpen(false));
-    };
 
     return (
         <>
             {isSheetOpen && (
-                <TouchableWithoutFeedback onPress={handleCloseSheet}>
-                    <Animated.View style={[styles.overlay, { opacity }]} />
+                <TouchableWithoutFeedback onPress={(closeSheet)}>
+                    <View style={styles.overlay} />
                 </TouchableWithoutFeedback>
             )}
 
-            <BottomSheet ref={sheetRef} index={-1} snapPoints={snapPoints} enablePanDownToClose={true} onClose={handleCloseSheet}
+            <BottomSheetModal ref={sheetRef} index={0} snapPoints={snapPoints} enablePanDownToClose={true} onClose={closeSheet}
                 backgroundComponent={({ style }) => <View style={[style, styles.shittContainer]} />}
                 handleIndicatorStyle={{ backgroundColor: '#F9F5EA' }}
             >
@@ -42,7 +34,7 @@ export default function HomeBottomSheet({ sheetRef, isSheetOpen, setIsSheetOpen 
                         <MenuItem icon="bar-chart" text="¿Quién limpia más?" onPress={() => console.log('Ver estadísticas')} isLast />
                     </View>
                 </BottomSheetView>
-            </BottomSheet>
+            </BottomSheetModal>
         </>
     );
 }
@@ -72,17 +64,14 @@ const styles = StyleSheet.create({
     },
     shittContainer: {
         padding: 20,
-        backgroundColor: '#01151C',
+        backgroundColor: colors.background,
         borderRadius: 12,
-    },
-    menuContainer: {
-        backgroundColor: '#01151C',
     },
     subMenuContainer: {
         marginHorizontal: 10,
         marginVertical: 20,
         paddingHorizontal: 20,
-        backgroundColor: '#03202A',
+        backgroundColor: colors.background,
         borderRadius: 12,
     },
     menuTitle: {
