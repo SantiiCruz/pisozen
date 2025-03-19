@@ -1,50 +1,45 @@
-# Welcome to your Expo app 👋
+# PisoZen
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+PisoZen es una aplicación de organización de tareas para compañeros de piso, desarrollada con **React Native** y **Expo**. Su objetivo es facilitar la gestión de tareas compartidas, gastos comunes y comunicación entre los integrantes de un hogar.
 
-## Get started
+## Características
+- 📋 **Gestión de Tareas**: Asigna y organiza tareas del hogar.
+- 🔔 **Notificaciones**: Recibe recordatorios sobre tareas pendientes.
+- 📊 **Historial y Reportes**: Visualiza estadísticas de tareas completadas y gastos.
+- 📱 **Interfaz Amigable**: Diseño intuitivo y fácil de usar.
 
-1. Install dependencies
+## Instalación
 
-   ```bash
+1. Clona el repositorio:
+   ```sh
+   git clone https://github.com/tu-usuario/pisozen.git
+   cd pisozen
+   ```
+2. Instala las dependencias:
+   ```sh
    npm install
    ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
+3. Inicia la aplicación con Expo:
+   ```sh
+   npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+## Tecnologías Utilizadas
+- [React Native](w)
+- [Expo](w)
+- [React Navigation](w) para la gestión de navegación
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Contribución
+¡Las contribuciones son bienvenidas! Si deseas colaborar:
+1. Haz un fork del repositorio
+2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`)
+3. Realiza tus cambios y haz un commit (`git commit -m 'Añadir nueva funcionalidad'`)
+4. Envía un pull request
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Licencia
+Este proyecto está bajo la licencia MIT.
 
-## Get a fresh project
+## Contacto
+Si tienes alguna duda o sugerencia, puedes contactarme en [santiagocruzinfo@gmail.com](mailto:santiagocruzinfo@gmail.com) o abrir un issue en el repositorio.
 
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---

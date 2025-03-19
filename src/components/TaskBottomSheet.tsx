@@ -4,7 +4,6 @@ import BottomSheet, { BottomSheetView, BottomSheetModal } from '@gorhom/bottom-s
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { colors } from "@/src/styles/colors";
 import CustomPicker from "@/src/components/CustomPicker";
-import DatePicker from 'react-native-date-picker';
 
 interface TaskBottomSheetProps {
     sheetRef: React.RefObject<BottomSheet>;
@@ -77,23 +76,6 @@ export default function TaskBottomSheet({ sheetRef, isSheetOpen, setIsSheetOpen,
                             options={rooms}
                             selectedValue={selectedRoom}
                             onSelect={setSelectedRoom}
-                        />
-                    </View>
-                    <View style={styles.selectContainer}>
-                        <Text style={styles.label}>Fecha</Text>
-                        <TouchableOpacity onPress={() => setOpen(true)} style={styles.dateButton}>
-                            <Text style={styles.dateText}>{date.toLocaleDateString()}</Text>
-                        </TouchableOpacity>
-                        <DatePicker
-                            modal
-                            open={open}
-                            date={date}
-                            mode="date"
-                            onConfirm={(selectedDate) => {
-                                setOpen(false);
-                                setDate(selectedDate);
-                            }}
-                            onCancel={() => setOpen(false)}
                         />
                     </View>
                     <View style={styles.buttonContainer}>
