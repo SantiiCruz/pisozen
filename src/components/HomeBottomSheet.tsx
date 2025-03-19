@@ -26,11 +26,11 @@ export default function HomeBottomSheet({ sheetRef, isSheetOpen, setIsSheetOpen,
                 backgroundComponent={({ style }) => <View style={[style, styles.shittContainer]} />}
                 handleIndicatorStyle={{ backgroundColor: '#F9F5EA' }}
             >
-                <BottomSheetView style={styles.menuContainer}>
+                <BottomSheetView>
                     <Text style={styles.menuTitle}>Opciones</Text>
                     <View style={styles.subMenuContainer}>
                         <MenuItem icon="person-add" text="Añadir Roommates" onPress={() => console.log('Añadir Roommates')} isLast={false} />
-                        <MenuItem icon="person-add" text="Añadir Roommates" onPress={() => console.log('Añadir Roommates')} isLast={false} />
+                        <MenuItem icon="home" text="Unirse a un hogar" onPress={() => console.log('Añadir Roommates')} isLast={false} />
                         <MenuItem icon="bar-chart" text="¿Quién limpia más?" onPress={() => console.log('Ver estadísticas')} isLast />
                     </View>
                 </BottomSheetView>

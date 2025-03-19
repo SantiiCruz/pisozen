@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useRouter } from "expo-router";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { colors } from "@/src/styles/colors";
+import { globalStyles } from "@/src/styles/globalStyles";
 
 const languages = [
   { code: "es", name: "Español" },
@@ -32,11 +34,34 @@ export default function LanguageScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20 },
-  title: { fontSize: 20, fontWeight: "bold", marginBottom: 20 },
-  option: { padding: 15, borderBottomWidth: 1, borderBottomColor: "#ddd" },
-  selected: { backgroundColor: "#eee" },
-  optionText: { fontSize: 18 },
-  saveButton: { marginTop: 20, backgroundColor: "#007AFF", padding: 15, borderRadius: 5 },
-  saveText: { color: "white", textAlign: "center", fontSize: 18 },
+  container: { flex: 1, padding: 20, backgroundColor: colors.background },
+  title: {
+    fontSize: 18,
+    marginBottom: 20,
+    color: colors.text
+  },
+  option: {
+    padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+    color: colors.text
+  },
+  selected: {
+    backgroundColor: colors.border
+  },
+  optionText: {
+    fontSize: 18,
+    color: colors.text
+  },
+  saveButton: {
+    marginTop: 20,
+    backgroundColor: colors.secondary,
+    padding: 15,
+    borderRadius: 5
+  },
+  saveText: {
+    color: colors.text,
+    textAlign: "center",
+    fontSize: 18
+  },
 });

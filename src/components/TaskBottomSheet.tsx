@@ -4,6 +4,7 @@ import BottomSheet, { BottomSheetView, BottomSheetModal } from '@gorhom/bottom-s
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { colors } from "@/src/styles/colors";
 import CustomPicker from "@/src/components/CustomPicker";
+import DatePicker from 'react-native-date-picker';
 
 interface TaskBottomSheetProps {
     sheetRef: React.RefObject<BottomSheet>;
@@ -21,6 +22,8 @@ export default function TaskBottomSheet({ sheetRef, isSheetOpen, setIsSheetOpen,
 
     const participants = ['Juan', 'Ana', 'Pedro', 'Luis']; // Lista de participantes
     const rooms = ['Sala', 'Cocina', 'Baño', 'Habitación']; // Lista de habitaciones
+    const [date, setDate] = useState(new Date());
+    const [open, setOpen] = useState(false);
 
 
     const handleSave = () => {
@@ -76,7 +79,23 @@ export default function TaskBottomSheet({ sheetRef, isSheetOpen, setIsSheetOpen,
                             onSelect={setSelectedRoom}
                         />
                     </View>
-
+                    <View style={styles.selectContainer}>
+                        <Text style={styles.label}>Fecha</Text>
+                        <TouchableOpacity onPress={() => setOpen(true)} style={styles.dateButton}>
+                            <Text style={styles.dateText}>{date.toLocaleDateString()}</Text>
+                        </TouchableOpacity>
+                        <DatePicker
+                            modal
+                            open={open}
+                            date={date}
+                            mode="date"
+                            onConfirm={(selectedDate) => {
+                                setOpen(false);
+                                setDate(selectedDate);
+                            }}
+                            onCancel={() => setOpen(false)}
+                        />
+                    </View>
                     <View style={styles.buttonContainer}>
                         <TouchableOpacity style={[styles.button, styles.cancelButton]} onPress={closeSheet}>
                             <Text style={styles.buttonText}>Cancelar</Text>
@@ -192,4 +211,17 @@ const styles = StyleSheet.create({
         color: '#00A896', // Color turquesa (como en la imagen)
         fontWeight: 'bold',
     },
+    dateButton: {
+        padding: 10,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    dateText: {
+        fontSize: 16,
+        color: '#333',
+    },
+
 });

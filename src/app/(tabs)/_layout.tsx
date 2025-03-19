@@ -1,8 +1,6 @@
-import React, { useRef, useState, useCallback } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React from 'react';
 import { Tabs } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import HomeBottomSheet from '@/src/components/HomeBottomSheet';
 import { colors } from '@/src/styles/colors';
 import { globalStyles } from '@/src/styles/globalStyles';
 
@@ -34,7 +32,7 @@ export default function TabLayout() {
           options={{
             title: 'Historial',
             tabBarIcon: ({ color, focused }) => (
-              <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={24} />
+              <Ionicons name={focused ? 'bar-chart' : 'bar-chart-outline'} color={color} size={24} />
             ),
             headerShown: false,
           }}
@@ -46,13 +44,6 @@ export default function TabLayout() {
             tabBarIcon: ({ color, focused }) => (
               <Ionicons name={focused ? 'settings-sharp' : 'settings-outline'} color={color} size={24} />
             ),
-            headerTintColor: '#fff',
-            headerTitle: 'Ajustes',
-            headerTitleStyle: globalStyles.header,
-            headerStyle: {
-              backgroundColor: colors.background, 
-              
-            },
             headerShown: false,
           }}
         />
